@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join me on Murte</title>
+  <link rel="icon" href="../icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+  <header>
+    <img src="../icon.png" alt="">
+    <a href="../">Murte</a>
+  </header>
+
+  <h1>You've been invited to Murte.</h1>
+  <p class="lead">Murte shows when you and your friends are free to play, drink a beer or hang out.</p>
+
+  <div class="stack">
+    <p><strong>Have Murte?</strong> Open the invite and you're friends.</p>
+    <a class="button" id="open" href="#">Open in Murte</a>
+
+    <p><strong>Not yet?</strong> Get the app, sign up, then come back here and tap <em>Open in Murte</em>, or enter this code under <em>Friends → Have an invite code?</em></p>
+    <div class="code" id="code">–</div>
+    <a class="button secondary" href="https://apps.apple.com/app/id6761330178">Download on the App Store</a>
+  </div>
+
+  <footer>
+    <nav><a href="../privacy.html">Privacy policy</a></nav>
+  </footer>
+</main>
+<script>
+  // Invite code from ?code=…, handed to the app via its murte:// URL scheme.
+  var code = new URLSearchParams(location.search).get('code') || '';
+  var safe = code.replace(/[^A-Za-z0-9]/g, '');
+  document.getElementById('code').textContent = safe || '–';
+  if (safe) {
+    var appUrl = 'murte://invite/' + safe;
+    document.getElementById('open').href = appUrl;
+  }
+</script>
+</body>
+</html>
